@@ -6,7 +6,11 @@ const initialState = {
     email:null,
     password:null,
     userExists:null,
-    badLogin:null
+    badLogin:null,
+    errUserLength:null,
+    errPassLength:null,
+    userExists:null,
+    mailExists:null
     
 };
 
@@ -20,10 +24,24 @@ export default function(state = initialState, action) {
         badLogin:action.payload.badLogin
       }
       case REG:
+      let p = action.payload;
       return {
-        ...state,
-        userExists: action.payload
-      }
+        isAuth:null,
+        username:null,
+        email:null,
+        password:null,
+        userExists:null,
+        badLogin:null,
+        errUserLength:null,
+        errPassLength:null,
+        userExists:null,
+        mailExists:null,
+        
+          [p]:true
+        }
+      
+      
+        
       case CHECK_AUTH:
       return {
         ...state,

@@ -23,7 +23,7 @@ const Login = props => {
     }
     const handlePass = (e) => {
         setPassword(e.target.value);
-        console.log(e.target.value)
+        
     }
 
     const login = () => {

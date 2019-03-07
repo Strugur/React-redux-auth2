@@ -1,13 +1,13 @@
-var express = require("express");
-var	 app = express();
-var cors = require("cors");
-var bodyParser = require("body-parser");
-var mongoose = require("mongoose");
+const express = require("express");
+const	 app = express();
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const session = require('express-session')
-var MongoStore = require('connect-mongo')(session);
-var  auth = require("./routes/api/auth.js");
-var  register = require("./routes/api/register.js");
-var  profile = require("./routes/api/profile.js");
+const MongoStore = require('connect-mongo')(session);
+const  auth = require("./routes/api/auth.js");
+const  register = require("./routes/api/register.js");
+const  profile = require("./routes/api/profile.js");
 
 
 //connect to MongoDB

@@ -9,7 +9,7 @@ import store from './store';
 import * as serviceWorker from './serviceWorker';
 
 
-// console.log(store.getState());
+
 
 ReactDOM.render(
 <Provider store={store}>

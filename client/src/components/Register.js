@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {reg} from '../_actions/authAction';
 
+
 const Register=props=> {
     const [username,setUserName] = useState(null);
     const [email,setEmail] = useState(null);
@@ -11,15 +12,14 @@ const Register=props=> {
     const [passwordConf,setPasswordConf] = useState(null);
     const [errAll,setErrAll] = useState(null);
     const [errPass,setErrPass] = useState(null);
-        
-         if (props.userExists == false){
+   
+       if (props.userExists == false){
             window.location.href="/login"
-        }else if (props.isAuth == true){
+        }else if (props.isAuth== true || props.registered == true){
             window.location.href="/profile"
         }
-        
-    
-    
+
+       
     const handleUsername = (e)=>{
         setUserName(e.target.value);
     }
@@ -41,7 +41,7 @@ const Register=props=> {
             setErrAll(false);
             if(password == passwordConf){
                  props.reg(username,email,password);
-                
+                    
                 
             }else{
                 setErrPass(true);
@@ -59,9 +59,15 @@ const Register=props=> {
                         <div className="card">
                             <div className="card-header">Register</div>
                             <div className="card-body">
-                            {errAll? <div className="alert alert-danger" role="alert" id="alert"> All fielld must be field</div>: null}
+                            {/* Error messages */}
+                            {errAll? <div className="alert alert-danger" role="alert" id="alert">All fields must be filled </div>: null}
                             {errPass? <div className="alert alert-danger" role="alert" id="alert"> Passwords doesn't match</div>: null}
                             {props.userExists? <div className="alert alert-danger" role="alert" id="alert"> User already exists</div>:null}
+                            {props.mailExists? <div className="alert alert-danger" role="alert" id="alert">This email is already in use</div>:null}
+                            {props.errUserLength? <div className="alert alert-danger" role="alert" id="alert">Username must be between 4 and 20 characters</div>:null}
+                            {props.errPassLength? <div className="alert alert-danger" role="alert" id="alert">Password must be between 4 and 20 characters</div>:null}
+
+
                                 <div className="form-group row">
                                     <label htmlFor="username" className="col-md-4 col-form-label text-md-right">Username</label>
                                     <div className="col-md-6">
@@ -120,6 +126,7 @@ const Register=props=> {
 
                                         Register
                                     </button>
+                                    
                                 </div>
                             </div>
 
@@ -145,7 +152,11 @@ const mapDispatchToProps = ({
 })
 const mapStateToProps = state => ({
     userExists: state.auth.userExists,
-    isAuth:state.auth.isAuth
+    mailExists:state.auth.mailExists,
+    isAuth:state.auth.isAuth,
+    errUserLength:state.auth.errUserLength,
+    errPassLength:state.auth.errPassLength,
+    registered:state.auth.registered
 })
 
 

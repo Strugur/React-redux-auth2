@@ -42,15 +42,17 @@ export const reg=(username,email,password)=>dispatch=>{
    
    return dispatch({
     type: REG,
-    payload:false
+    payload:res.data
       })
   })
   .catch(err=> {
- 
     return dispatch({
-      type: REG,
-      payload:true
+        type: REG,
+        payload:err.response.data
         })
+
+    
+    
     
   });
 
